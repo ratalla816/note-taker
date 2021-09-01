@@ -40,7 +40,7 @@
   note taking
   
   # Acknowledgements
-  Rob 
+  Rob Atalla, Nathan Szurek (Tutor)
     
   ## License
   ![badge](https://img.shields.io/badge/license-MIT-important)
