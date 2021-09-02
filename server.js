@@ -15,6 +15,8 @@ const fs = require("fs");
 // functions to write and append data
 // function fs.writeFile
 // fs.appendFile
+fs.appendFile( path, data[, options], callback )
+// https://www.geeksforgeeks.org/node-js-fs-appendfile-function/
 
 const app = express();
 const PORT = 3001;
@@ -22,6 +24,9 @@ const PORT = 3001;
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+fs.appendFile( path, data[, options], callback )
+// https://www.geeksforgeeks.org/node-js-fs-appendfile-function/
 
 
 // Data
