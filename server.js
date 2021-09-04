@@ -27,7 +27,7 @@ app.use(express.static('public'));
 
 // instructions for testing POST requests: https://courses.bootcampspot.com/courses/715/pages/11-dot-2-4-test-routes-in-insomnia-core?module_item_id=227116
 
-// Routes
+// GET Routes
 // =============================================================
 
 app.get("/notes", function(req, res) {
@@ -48,20 +48,18 @@ app.get("/api/notes/:id", function(req, res) {
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+// End GET ROUTES
+// ================================================================
 
+// app.post
+app.post('/api/notes', (req, res) => {
+  const newNote = req.body;
 
+   console.log(newNote);
 
+  notes.push(newNote);
 
-
-// Create an `/add` route that returns `add.html`
-//
-// YOUR CODE HERE
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('/api/notes', (req, res) => {
-  return res.json(__dirname, './public/notes.html');
+  res.json(newNote);
 });
 
 app.post('/api/notes', function(req, res) {
@@ -83,28 +81,6 @@ app.delete("/api/notes/:id", function(req, res) {
   savedNotes = savedNotes.filter(currNote => {
       return currNote.id != noteID;
   })
-
-
-app.post('/api/notes', (req, res) => {
-  const newNote = req.body;
-
-  // BONUS: Use a RegEx Pattern to remove spaces from newCharacter
-  // Your code here
-
-  console.log(newNote);
-
-  notes.push(newNote);
-
-  res.json(newNote);
-});
-
-// functions to write and append data
-// function fs.writeFile
-// fs.appendFile
-fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
-res.json(savedNotes);
-
-
 
 // Listener
 // =============================================================
