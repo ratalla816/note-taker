@@ -31,9 +31,8 @@ app.use(express.static('public'));
 // =============================================================
 
 app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirName, "./public/notes.html"));
+  res.sendFile(path.join(mainDir, "./public/notes.html"));
 });
-// double check this..
 
 app.get("/api/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "/db/db.json"));
@@ -53,20 +52,12 @@ app.get('*', function(req, res) {
 
 // app.post
 app.post('/api/notes', (req, res) => {
-  const newNote = req.body;
-
-   console.log(newNote);
-
-  notes.push(newNote);
-
-  res.json(newNote);
-});
-
-app.post('/api/notes', function(req, res) {
-  let savedNotes = JSON.parse(fs.readFileSync('./db/db.json'));
-  let uniqueID = (savedNotes.length).toString();
+  const  newNote = req.body;
+  const savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
+  const uniqueID = (savedNotes.length).toString();
   newNote.id = uniqueID;
   savedNotes.push(newNote);
+});
 
 // functions to write and append data
 // function fs.writeFile
@@ -77,10 +68,22 @@ res.json(savedNotes);
 app.delete("/api/notes/:id", function(req, res) {
   let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
   let noteID = req.params.id;
+  // Lets just give the deleted notes an id of ZERO and then kick those out. 
   let newID = 0;
-  savedNotes = savedNotes.filter(currNote => {
-      return currNote.id != noteID;
+  // the deleted note (thisNote) must recieve a new id of zero because its !important. 
+  savedNotes = savedNotes.filter(thisNote => {
+      return thisNote.id != noteID;
   })
+
+  // the numeric id values for each note are passed into a string 
+  for (thisNote of savedNotes) {
+    thisNote.id = newID.toString();
+    newID++;
+}
+
+fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+    res.json(savedNotes);
+})
 
 // Listener
 // =============================================================
