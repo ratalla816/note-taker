@@ -15,6 +15,7 @@ var $noteList = $(".list-container .list-group");
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
 
+// UNNECESSARY
 // Show an element
 // const show = (elem) => {
 //   elem.style.display = 'inline';
@@ -25,7 +26,8 @@ var activeNote = {};
 //   elem.style.display = 'none';
 // };
 
-// These should all be var get-$.ajax-data requests..
+// *THESE FETCH REQUESTS SHOULD BE VAR FUNCTIONS INSTEAD OF CONST.
+// THEY ARE OCCURING ASYNCHRONOUSLY SO THESE SHOULD ALL BE $AJAX-GET REQUESTS..*
 
 // const getNotes = () =>
 //   fetch('/api/notes', {
@@ -38,8 +40,8 @@ var activeNote = {};
 // Fetch notes from the db
 var getNotes = function() {
   return $.ajax({
-    url: "/api/notes",
-    method: "GET"
+    url: '/api/notes',
+    method: 'GET'
   });
 };
 
@@ -55,9 +57,9 @@ var getNotes = function() {
 // saves the note to the db
 var saveNote = function(note) {
   return $.ajax({
-    url: "/api/notes",
+    url: '/api/notes',
     data: note,
-    method: "POST"
+    method: 'POST'
   });
 };
 
@@ -72,8 +74,8 @@ var saveNote = function(note) {
 // deletes notes from the db 
 var deleteNote = function(id) {
   return $.ajax({
-    url: "api/notes/" + id,
-    method: "DELETE"
+    url: 'api/notes/' + id,
+    method: 'DELETE'
   });
 };
 
@@ -82,15 +84,15 @@ var renderActiveNote = function() {
   $saveNoteBtn.hide();
 
   if (activeNote.id) {
-    $noteTitle.attr("readonly", true);
-    $noteText.attr("readonly", true);
+    $noteTitle.attr('readonly', true);
+    $noteText.attr('readonly', true);
     $noteTitle.val(activeNote.title);
     $noteText.val(activeNote.text);
   } else {
-    $noteTitle.attr("readonly", false);
-    $noteText.attr("readonly", false);
-    $noteTitle.val("");
-    $noteText.val("");
+    $noteTitle.attr('readonly', false);
+    $noteText.attr('readonly', false);
+    $noteTitle.val('');
+    $noteText.val('');
   }
 };
 
@@ -113,7 +115,7 @@ var handleNoteDelete = function(event) {
   event.stopPropagation();
 
   var note = $(this)
-    .parent(".list-group-item")
+    .parent('.list-group-item')
     .data();
 
   if (activeNote.id === note.id) {
@@ -158,11 +160,9 @@ var renderNoteList = function(notes) {
     var note = notes[i];
 
     var $li = $("<li class='list-group-item'>").data(note);
-    var $span = $("<span>").text(note.title);
-    var $delBtn = $(
-      "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
-    );
-
+    var $span = $('<span>').text(note.title);
+    var $delBtn = $("<i class='fas fa-trash-alt float-right text-danger delete-note'>");   
+    
     $li.append($span, $delBtn);
     noteListItems.push($li);
   }
@@ -177,12 +177,12 @@ var getAndRenderNotes = function() {
   });
 };
 
-$saveNoteBtn.on("click", handleNoteSave);
-$noteList.on("click", ".list-group-item", handleNoteView);
-$newNoteBtn.on("click", handleNewNoteView);
-$noteList.on("click", ".delete-note", handleNoteDelete);
-$noteTitle.on("keyup", handleRenderSaveBtn);
-$noteText.on("keyup", handleRenderSaveBtn);
+$saveNoteBtn.on('click', handleNoteSave);
+$noteList.on('click', '.list-group-item', handleNoteView);
+$newNoteBtn.on('click', handleNewNoteView);
+$noteList.on('click', '.delete-note', handleNoteDelete);
+$noteTitle.on('keyup', handleRenderSaveBtn);
+$noteText.on('keyup', handleRenderSaveBtn);
 
 // Pulls saved notes from db.json and renders them on the page
 getAndRenderNotes();

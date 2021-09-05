@@ -11,10 +11,9 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-
 const app = express();
 const port = 3001;
-const mainDir = path.join(__dirname, "/public")
+const dirs = path.join(__dirname, "/public")
 
 // intercept our POST request before it gets to the callback function
 // parse incoming string or array data
@@ -29,11 +28,6 @@ app.use(express.json());
 // GET Routes
 // =============================================================
 
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(mainDir, "notes.html"));
-});
-
-
 app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
 });
@@ -43,53 +37,66 @@ app.get("/api/notes/:id", function(req, res) {
     res.json(savedNotes[Number(req.params.id)]);
 });
 
-// Wildcard must be the final GET
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(dirs, "notes.html"));
+});
+
+// app.get "wildcard" GOES LAST 
 app.get("*", function(req, res) {
-    res.sendFile(path.join(mainDir, "index.html"));
+    res.sendFile(path.join(dirs, "index.html"));
 });
 // End GET ROUTES
 // ================================================================
 
 // app.post
 app.post("/api/notes", function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
-    let newNote = req.body;
-    let uniqueID = (savedNotes.length).toString();
-    newNote.id = uniqueID;
-    savedNotes.push(newNote);
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json")); 
+    let newNote = req.body;  
+    // assigns a specific numeric ID to each saved note - idAssn value is incremented starting with zero.
+    let idAssn = (savedNotes.length).toString();
+        newNote.id = idAssn; 
+        savedNotes.push(newNote);
     
  // functions to write and append data
  // function fs.writeFile
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
-    console.log("Note saved to db.json. Content: ", newNote);
+    // cmd line "saved" confirmation msg
+    console.log(`Note ID ${newNote.id} saved to database`);
     res.json(savedNotes);
 })
 // Append data
 app.delete("/api/notes/:id", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
+    let newID = 1;
     let noteID = req.params.id;
-    let newID = 0;
-    console.log(`Deleting note with ID ${noteID}`);
-    savedNotes = savedNotes.filter(currNote => {
-        return currNote.id != noteID;
+   
+   // cmd line "delete" confirmation msg
+    console.log(`Note ID ${noteID} deleted`);
+    savedNotes = savedNotes.filter(thisNote => {
+      // thisNote.id must produce at least 1 value   
+         return thisNote.id != noteID;
     })
     
-    // the numeric id values for each note are passed into a string 
-  // _thisNote not currNote //
-    for (currNote of savedNotes) {
-        currNote.id = newID.toString();
+    // the numeric id values for each note are incremented then passed into a string 
+      for (thisNote of savedNotes) {
+        thisNote.id = newID.toString();
         newID++;
     }
-
-    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+   // thisNote.id reassigns the idAssn's incrementally starting with "1" (newNote),
+   // but excludes the note selected for deletion, which gets reassigned to ID "0". 
+   // Now only ID values 1 and higher are allowed in the array and zeroes get kicked out.
+   // the deleted note (thisNote) must recieve a new id of zero because its !important.
+    
+   fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
 })
 
 // Listener
 // =============================================================
 app.listen(port, function() {
-    console.log(`Now listening to port ${port}.`);
+    console.log(`listening on port ${port}`);
 })
+//* ================================================================================== *//
 
 
 // app.get('/api/notes/:notes', (req, res) => {
