@@ -5,6 +5,7 @@
 // let newNoteBtn;
 // let noteList;
 // these are all the div classes in notes.html where our data will be written
+
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
@@ -13,22 +14,6 @@ var $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
-
-var renderactiveNote = function() {
-  $saveNoteBtn.hide();
-
-  if (activeNote.id) {
-    $noteTitle.attr("readonly", true);
-    $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
-    $noteText.val(activeNote.text);
-  } else {
-    $noteTitle.attr("readonly", false);
-    $noteText.attr("readonly", false);
-    $noteTitle.val("");
-    $noteText.val("");
-  }
-};
 
 // Show an element
 // const show = (elem) => {
@@ -162,7 +147,7 @@ var handleRenderSaveBtn = function() {
   }
 };
 
-// Render's the list of note titles
+// Render list of note titles
 // same thing as before, switch the const to var
 var renderNoteList = function(notes) {
   $noteList.empty();
