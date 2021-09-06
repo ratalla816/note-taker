@@ -98,9 +98,7 @@ app.delete('/api/notes/:id', function (req, res) {
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
 })
-  // app.listen(port, () => {
-  //   console.log(`listening on port ${port}`);
-  // });
+  
 //* ================================================================================== *//
 
 
