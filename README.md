@@ -30,8 +30,7 @@
   THEN that note appears in the right-hand column
   WHEN I click on the Write icon in the navigation at the top of the page
   THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-  BUT I don't really need the Write icon as long as I have the ability to delete saved notes because the handleNewNoteView function empties the data from the activeNote object so that it is ready for new user input to create a new note. 
- 
+   
   ## Table of Contents
   - [Description](#description)
   - [Documentation](#documentation)
