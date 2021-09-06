@@ -12,7 +12,7 @@ var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
-// activeNote is used to keep track of the note in the textarea
+// tracks notes that are in-progress, unsaved. 
 var activeNote = {};
 
 // UNNECESSARY
@@ -27,7 +27,7 @@ var activeNote = {};
 // };
 
 // *THESE FETCH REQUESTS SHOULD BE VAR FUNCTIONS INSTEAD OF CONST.
-// THEY ARE OCCURING ASYNCHRONOUSLY SO THESE SHOULD ALL BE $AJAX-GET REQUESTS..*
+// THEY ARE OCCURING ASYNCHRONOUSLY SO THESE SHOULD ALL BE $.AJAX-GET REQUESTS..*
 
 // const getNotes = () =>
 //   fetch('/api/notes', {
