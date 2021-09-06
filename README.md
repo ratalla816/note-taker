@@ -34,6 +34,7 @@
   ## Table of Contents
   - [Description](#description)
   - [Documentation](#documentation)
+  - [Deployment](#deployment)
   - [Screenshots](#screenshots)
   - [Features](#features)
   - [Acknowledgements](#acknowledgements)
@@ -51,7 +52,9 @@
   > note-taker@1.0.0 start
   > node server.js "listening on port 3001"
   Once the server has started, navigate to http://localhost:3001/ 
- 
+
+  ## Deployed Application
+  The application is deployed using Heroku: https://ratalla816-note-taker.herokuapp.com/
   ## Screenshots
   ![Screenshot](github/images/screenshot.png)
   <br>
