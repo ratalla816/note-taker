@@ -86,8 +86,7 @@ app.delete('/api/notes/:id', function (req, res) {
   // thisNote.id reassigns the idAssn's incrementally starting with "1" (newNote),
   // but excludes the note selected for deletion, which gets reassigned to ID "0". 
   // Now only ID values 1 and higher are allowed in the array and zeroes get kicked out.
-  // the deleted note (thisNote) must recieve a new id of zero because its !important.
-
+  
   fs.writeFileSync('./db/db.json', JSON.stringify(noteSave));
   res.json(noteSave);
 })
