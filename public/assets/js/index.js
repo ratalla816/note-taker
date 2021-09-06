@@ -109,9 +109,10 @@ var handleNoteSave = function() {
   });
 };
 
-// Delete the clicked note (changed to variable function)
+// deleteNote function
 var handleNoteDelete = function(event) {
-  // prevents the click listener for the list from being called when the button inside of it is clicked
+  // Ensures that when delBtn is clicked only the selected note is deleted
+  // without deleting all the saved notes (changed to variable function)
   event.stopPropagation();
 
   var note = $(this)
@@ -128,13 +129,13 @@ var handleNoteDelete = function(event) {
   });
 };
 
-// Sets the activeNote and displays it
+// prepare and display the activeNote
 var handleNoteView = function() {
   activeNote = $(this).data();
   renderActiveNote();
 };
 
-// Sets the activeNote to and empty object and allows the user to enter a new note
+// activeNote object data is emptied and ready for new user input
 var handleNewNoteView = function() {
   activeNote = {};
   renderActiveNote();
@@ -170,7 +171,7 @@ var renderNoteList = function(notes) {
   $noteList.append(noteListItems);
 };
 
-// Gets notes from the db and renders them to the sidebar
+// GET saved notes from db and render them on the sidebar
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
     renderNoteList(data);
@@ -189,7 +190,7 @@ getAndRenderNotes();
 //\ THE END /\\
 
 // =============================================================================================================
-//  STARTER CODE BELOW          
+//  STARTER CODE BELOW v v v v         
 
 // let noteTitle;
 // let noteText;

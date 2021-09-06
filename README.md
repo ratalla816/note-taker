@@ -35,7 +35,9 @@
 
   ## Screenshot
   ![Screenshot](github/images/screenshot.png)
-
+  <br>
+  ![Screenshot](github/images/screenshot2.png)
+  
   ## Features
   note taking
   
