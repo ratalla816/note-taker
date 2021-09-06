@@ -35,7 +35,6 @@
   ## Table of Contents
   - [Description](#description)
   - [Documentation](#documentation)
-  - [Usage](#usage)
   - [Screenshots](#screenshots)
   - [Features](#features)
   - [Acknowledgements](#acknowledgements)
@@ -54,15 +53,16 @@
   > node server.js "listening on port 3001"
   Once the server has started, navigate to http://localhost:3001/ 
  
-  ## Usage
-  
-
   ## Screenshots
   ![Screenshot](github/images/screenshot.png)
   <br>
   ![Screenshot](github/images/screenshot2.png)
   <br>
   ![Screenshot](github/images/screenshot3.png)
+  <br>
+  ![Screenshot](github/images/screenshot4.png)
+  <br>
+  ![Screenshot](github/images/screenshot5.png)
   
   ## Features
   Application front end connects to an Express.js back end.
