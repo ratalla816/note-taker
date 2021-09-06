@@ -12,8 +12,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const dirs = path.join(__dirname, '/public')
+const PORT = process.env.PORT || 3001;
 const app = express();
-const port = 3001;
+// const port = 3001;
+
 
 // intercept our POST request before it gets to the callback function
 // parse incoming string or array data
@@ -93,9 +95,12 @@ app.delete('/api/notes/:id', function (req, res) {
 
 // Listener
 // =============================================================
-app.listen(port, function () {
-  console.log(`listening on port ${port}`);
-})
+// app.listen(port, function () {
+//   console.log(`listening on port ${port}`);
+// })
+  app.listen(PORT, () => {
+  console.log(`API server now on port ${port}!`);
+  });
 //* ================================================================================== *//
 
 
