@@ -54,7 +54,9 @@
   Once the server has started, navigate to http://localhost:3001/ 
 
   ## Deployed Application
-  The application is deployed using Heroku: https://ratalla816-note-taker.herokuapp.com/
+  * The application is deployed using Heroku: https://ratalla816-note-taker.herokuapp.com/
+  
+  * !NOTE - the source code for the deployed Heroku application is on a seperate repository: https://github.com/ratalla816/note-taker2
   ## Screenshots
   ![Screenshot](github/images/screenshot.png)
   <br>
