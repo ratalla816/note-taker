@@ -56,7 +56,7 @@
   ## Deployed Application
   * The application is deployed using Heroku: https://ratalla816-note-taker.herokuapp.com/
 
-  * !NOTE - the files for the deployed Heroku application is on a seperate repository: https://github.com/ratalla816/note-taker2
+  * !NOTE - the files for the deployed Heroku application are on a seperate repository: https://github.com/ratalla816/note-taker2
   ## Screenshots
   ![Screenshot](github/images/screenshot.png)
   <br>
